@@ -19,26 +19,12 @@ import java.net.URL
 plugins {
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
-  id(libs.plugins.nexus.plugin.get().pluginId)
-  id(libs.plugins.baseline.profile.get().pluginId)
+  id("maven-publish")
   id(libs.plugins.dokka.get().pluginId)
 }
 
+
 apply(from = "${rootDir}/scripts/publish-module.gradle.kts")
-
-mavenPublishing {
-  val artifactId = "balloon"
-  coordinates(
-    Configuration.artifactGroup,
-    artifactId,
-    rootProject.extra.get("libVersion").toString()
-  )
-
-  pom {
-    name.set(artifactId)
-    description.set("Modernized and sophisticated tooltips, fully customizable with an arrow and animations for Android.")
-  }
-}
 
 android {
   compileSdk = Configuration.compileSdk
@@ -46,30 +32,14 @@ android {
 
   defaultConfig {
     minSdk = Configuration.minSdk
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     consumerProguardFiles("consumer-rules.pro")
   }
 
-  resourcePrefix = "balloon"
-
-  buildFeatures {
-    viewBinding = true
-  }
-
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-  }
-
-  lint {
-    abortOnError = false
-  }
-}
-
-baselineProfile {
-  baselineProfileOutputDir = "."
-  filter {
-    include("com.skydoves.balloon.**")
+  publishing {
+    singleVariant("release") {
+      withSourcesJar()
+      withJavadocJar()
+    }
   }
 }
 
@@ -133,6 +103,20 @@ dependencies {
   androidTestImplementation(libs.androidx.test.ext.junit)
   androidTestImplementation(libs.androidx.test.espresso.core)
 
-  baselineProfile(project(":benchmark"))
   dokkaPlugin(libs.android.documentation.plugin)
 }
+
+afterEvaluate {
+  publishing {
+    publications {
+      create<MavenPublication>("release") {
+        from(components["release"])
+
+        groupId = project.group.toString()
+        artifactId = "balloon"
+        version = project.version.toString()
+      }
+    }
+  }
+}
+
