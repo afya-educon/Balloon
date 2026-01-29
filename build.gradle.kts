@@ -29,7 +29,6 @@ plugins {
 //apply(from ="${rootDir}/scripts/publish-root.gradle")
 
 apiValidation {
-  ignoredProjects.addAll(listOf("app", "benchmark-app"))
   ignoredPackages.add("com/skydoves/balloon/databinding")
   nonPublicMarkers.add("kotlin.PublishedApi")
 }
