@@ -12,16 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-plugins {
-  id("maven-publish")
-}
-
 import com.skydoves.balloon.Configuration
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
+  id("maven-publish")
 }
 
 rootProject.extra.apply {
