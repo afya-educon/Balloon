@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+group = "com.github.afya-educon"
+version = "1.5.2-v1"
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   alias(libs.plugins.android.application) apply false
@@ -23,7 +26,7 @@ plugins {
   alias(libs.plugins.kotlin.binary.compatibility)
 }
 
-apply(from ="${rootDir}/scripts/publish-root.gradle")
+//apply(from ="${rootDir}/scripts/publish-root.gradle")
 
 apiValidation {
   ignoredProjects.addAll(listOf("app", "benchmark-app"))

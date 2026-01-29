@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+plugins {
+  id("maven-publish")
+}
+
 import com.skydoves.balloon.Configuration
 
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -21,12 +25,12 @@ plugins {
 }
 
 rootProject.extra.apply {
-  set("PUBLISH_GROUP_ID", Configuration.artifactGroup)
-  set("PUBLISH_ARTIFACT_ID", "balloon")
+  set("PUBLISH_GROUP_ID", "com.github.afya-educon")
+  set("PUBLISH_ARTIFACT_ID", "Balloon-afya")
   set("PUBLISH_VERSION", rootProject.extra.get("rootVersionName"))
 }
 
-apply(from ="${rootDir}/scripts/publish-module.gradle")
+//apply(from ="${rootDir}/scripts/publish-module.gradle")
 
 android {
   compileSdk = Configuration.compileSdk
@@ -66,4 +70,17 @@ dependencies {
   implementation(libs.androidx.fragment)
   implementation(libs.androidx.lifecycle)
   implementation(libs.androidx.annotation)
+}
+
+afterEvaluate {
+  publishing {
+    publications {
+      create<MavenPublication>("release") {
+        from(components["release"])
+        groupId = "com.github.afya-educon"
+        artifactId = "balloon"
+        version = project.version.toString()
+      }
+    }
+  }
 }
