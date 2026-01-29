@@ -13,7 +13,7 @@
 // limitations under the License.
 
 group = "com.github.afya-educon"
-version = "1.5.2-v1"
+version = "1.5.2-v5"
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -21,7 +21,7 @@ plugins {
   alias(libs.plugins.android.library) apply false
   alias(libs.plugins.kotlin.android) apply false
   alias(libs.plugins.nexus.plugin)
-  alias(libs.plugins.spotless)
+  //alias(libs.plugins.spotless)
   alias(libs.plugins.dokka)
   alias(libs.plugins.kotlin.binary.compatibility)
 }
@@ -34,7 +34,7 @@ apiValidation {
 }
 
 subprojects {
-  apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
+  //apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
 
   configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {

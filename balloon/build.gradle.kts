@@ -23,7 +23,7 @@ plugins {
 
 // ✅ Configuração compatível com JitPack
 group = "com.github.afya-educon"
-version = project.findProperty("version") ?: "1.5.2"
+version = project.findProperty("version") ?: "1.5.2-v5"
 
 android {
   compileSdk = Configuration.compileSdk
