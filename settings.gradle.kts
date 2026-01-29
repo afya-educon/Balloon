@@ -29,6 +29,6 @@ dependencyResolutionManagement {
 
 include(":app")
 include(":balloon")
-include(":benchmark")
-include(":benchmark-app")
-include(":balloon-compose")
+//include(":benchmark")
+//include(":benchmark-app")
+//include(":balloon-compose")

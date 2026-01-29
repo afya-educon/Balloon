@@ -23,7 +23,7 @@ plugins {
   alias(libs.plugins.kotlin.binary.compatibility)
 }
 
-apply(from ="${rootDir}/scripts/publish-root.gradle")
+//apply(from ="${rootDir}/scripts/publish-root.gradle")
 
 apiValidation {
   ignoredProjects.addAll(listOf("app", "benchmark-app"))

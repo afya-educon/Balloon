@@ -21,12 +21,12 @@ plugins {
 }
 
 rootProject.extra.apply {
-  set("PUBLISH_GROUP_ID", Configuration.artifactGroup)
-  set("PUBLISH_ARTIFACT_ID", "balloon")
+  set("PUBLISH_GROUP_ID", "com.github.afya-educon")
+  set("PUBLISH_ARTIFACT_ID", "Balloon-afya")
   set("PUBLISH_VERSION", rootProject.extra.get("rootVersionName"))
 }
 
-apply(from ="${rootDir}/scripts/publish-module.gradle")
+//apply(from ="${rootDir}/scripts/publish-module.gradle")
 
 android {
   compileSdk = Configuration.compileSdk
