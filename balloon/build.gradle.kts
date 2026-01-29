@@ -21,16 +21,13 @@ plugins {
   id("maven-publish")
 }
 
-rootProject.extra.apply {
-  set("PUBLISH_GROUP_ID", "com.github.afya-educon")
-  set("PUBLISH_ARTIFACT_ID", "Balloon-afya")
-  set("PUBLISH_VERSION", rootProject.extra.get("rootVersionName"))
-}
-
-//apply(from ="${rootDir}/scripts/publish-module.gradle")
+// ✅ Configuração compatível com JitPack
+group = "com.github.afya-educon"
+version = project.findProperty("version") ?: "1.5.2"
 
 android {
   compileSdk = Configuration.compileSdk
+
   defaultConfig {
     minSdk = Configuration.minSdk
     targetSdk = Configuration.targetSdk
@@ -69,6 +66,7 @@ dependencies {
   implementation(libs.androidx.annotation)
 }
 
+// ✅ Publicação Maven para JitPack
 afterEvaluate {
   publishing {
     publications {
